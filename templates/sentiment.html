@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<br>
+
+<div class="container">
+	<section class="jumbotron text-center" style="background-color: white;border-radius: 15px;box-shadow: 2px 2px 15px #bebebe;">
+	<div class="row">
+		<div class="col-sm-6">
+		<h1 class="jumbotron-heading"> Welcome </h1>
+          <p class="lead text-black">
+           
+            <p>
+				to our Sentiment Analysis project, where text meets emotion! Harnessing the power of Flask in Python, our server processes your input and seamlessly communicates sentiment analysis results to the frontend, providing a real-time glimpse into the emotional tone of your text.</p></p>
+         
+         
+		</div>
+
+		<div class="col-sm-6">
+			<div class="container">
+				<form method="POST" action="/sentiment">
+				<textarea name="message" class="form-control" cols="8" rows="8"></textarea>
+				<br>
+				<button class="btn btn-primary" type="submit">Submit</button>
+
+				<button style="margin-left: 10px;" class="btn btn-danger" type="reset">clear</button>
+
+			</form>
+			<br>
+
+			<div class="container">
+				{% if prediction == 1 %}
+					<div class="container">
+						<p class="alert alert-success"><b>Positive Sentiment</b></p>
+					</div>
+				{% elif prediction == 0 %}
+					<div class="container">
+						<p class="alert alert-danger"><b>Negetive Sentiment</b></p>
+                    </div>
+                {% elif prediction == 2 %}
+			    	<div class="container">
+						<p class="alert alert-danger"><b>Neutral Sentiment</b></p>
+                    </div>
+				{% endif %}
+			</div>
+			<div class="container">
+				<h6>{{Polarity}}</h6>
+				<h6>{{Subjectivity}}</h6>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<p class="alert alert-success">
+							{{ original }}
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<p class="alert alert-warning">
+							{{ sum_message }}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</div>	
+	<!-- form area -->
+	
+
+{% endblock %}
